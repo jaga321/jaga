@@ -97,7 +97,9 @@ class Enquiry extends MX_Controller {
 		$data["users"]=$this->enquiry_model->get_all_users();
 		if($this->input->post())
 		{
+			
 			$input=$this->input->post();
+			
 			$this->enquiry_model->add_enquiry($input);
 			redirect($this->config->item('base_url')."enquiry/add_enquiry", "refresh");
 		}

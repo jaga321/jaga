@@ -86,6 +86,8 @@
                         <th>Village</th>
                         <th>District</th>
                         <th>Product Type</th>
+                         <th>Date</th>
+                         <th>Source</th>
                         <th>Status</th>
                         <?php if($user_det['log_type']!='Agent'){ ?>
                         <th>Allocated to</th>
@@ -122,6 +124,8 @@
                      <td><?php echo $cus["distic"]; ?></td>
                      <td><?php echo $cus["village"]; ?></td>
                      <td><?php echo $cus["product_type"]; ?></td>
+                     <td><?php echo ($cus['post_dt']==0)?'--':date("d-M-Y",strtotime($cus["post_dt"])); ?></td>
+                     <td><?php echo ($cus["source"]); ?></td>
                      <td><?php if($cus["approval_status"]==2){echo '<label style="color:red" class="status_approval">Rejected</label>';} 
                         else if($cus["approval_status"]==1){echo '<label class="status_approval" style="color:green">Approved</label>';}
                         else{echo '<label class="status_approval" style="color:blue">Pending</label>';} ?>
@@ -156,7 +160,7 @@
                ?>
                </tr>
                         <tr>
-                         <td colspan="7">No Data Found</td>
+                         <td colspan="12">No Data Found</td>
                         </tr>
                        <?php
               }

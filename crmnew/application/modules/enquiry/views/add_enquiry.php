@@ -59,6 +59,13 @@ if(isset($customers) && !empty($customers))
             <div class="portlet-content"> 
             
             <form class="form-horizontal"   method="post">
+            <div class="form-group">
+              <label class="col-md-2"></label>
+              <div class="col-md-4">
+              <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control">
+                <input type="hidden" name="enquiry[source]" value="website" class="form-control">
+              </div>
+            </div>
                <?php if($user_det['log_type']!='Agent'){ ?>
             <div class="form-group">
               <label class="col-md-2">User Name</label>
@@ -80,6 +87,7 @@ if(isset($customers) && !empty($customers))
              
                </div>
             </div>
+            
              <div class="form-group">
               <label class="col-md-2">Name</label>
               <div class="col-md-4">
@@ -88,6 +96,7 @@ if(isset($customers) && !empty($customers))
                  <input type="hidden" name="enquiry[agent_id]"  value="" class="form-control" maxlength="30">
                </div>
             </div>
+            
            
             <div class="form-group">
               <label class="col-md-2">Phone Number</label>
@@ -141,6 +150,8 @@ if(isset($customers) && !empty($customers))
               <div class="col-md-4">
               <input type="text" name="enquiry[userid]" placeholder="Enter your name" value="<?php echo $user_det['userid'];?>" class="form-control" required="required" readonly="readonly">
               <input type="hidden" name="enquiry[agent_id]" placeholder="Remarks" value="<?php echo $user_det['user_id'];?>" class="form-control" maxlength="30">
+              <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control">
+                <input type="hidden" name="enquiry[source]" value="website" class="form-control">
               
                </div>
             </div>
@@ -150,6 +161,13 @@ if(isset($customers) && !empty($customers))
               <input type="text" name="enquiry[name]" placeholder="Enter your name" class="form-control" required="required">
               
                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2"></label>
+              <div class="col-md-4">
+              <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control" required="required" maxlength="12">
+              
+              </div>
             </div>
            
             <div class="form-group">
