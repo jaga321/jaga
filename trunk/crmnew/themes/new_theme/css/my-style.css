@@ -969,7 +969,7 @@ input[type="checkbox"] {
   }
   .mainbar .mainbar-nav {
     float: none;
-    margin-top: 17px;
+    margin-top: 10px;
   }
   .mainbar .mainbar-nav > li {
     margin-right: 4px;
@@ -1038,7 +1038,7 @@ input[type="checkbox"] {
 }
 @media (min-width: 992px) {
   .mainbar {
-    height: 170px;
+    height: 110px;
   }
   .mainbar .mainbar-nav > li {
     margin-right: 10px;
@@ -1048,7 +1048,7 @@ input[type="checkbox"] {
     font-size: 14px;
   }
   .mainbar .mainbar-nav > li > a > i {
-    font-size: 28px;
+    font-size: 22px;
   }
 }
 @media (max-width: 768px) {
@@ -1114,16 +1114,16 @@ input[type="checkbox"] {
 }
 @media (min-width: 768px) {
   .content {
-    min-height: 750px;
+    min-height: 400px;
     padding: 0;
-    margin-top: -52px;
+    margin-top: -10px;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    /*-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);*/
   }
   .content::before {
     margin: 0;
@@ -1132,7 +1132,7 @@ input[type="checkbox"] {
     border-top-left-radius: 5px;
   }
   .content-container {
-    padding: 30px 25px 40px 25px;
+    padding: 25px 25px 20px 25px;
   }
   .content-header-title {
     font-size: 28px;
@@ -1151,15 +1151,15 @@ input[type="checkbox"] {
   box-shadow: inset 1px 1px 1px #ffffff;
 }
 .footer .row > div {
-  padding-bottom: .75em;
+  padding-bottom: 0;
 }
 .footer hr {
   border-top-color: #d2d2d2;
 }
 @media (min-width: 768px) {
   .footer {
-    padding-bottom: 30px;
-    margin-top: 1.5em;
+    padding-bottom: 10px;
+    margin-top: 0;
     background: transparent;
     border: none;
     -webkit-box-shadow: none;
