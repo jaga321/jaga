@@ -3124,3 +3124,8 @@ ul.support-list li {
 {
 	font-size:12px;
 }
+.dataTables_wrapper
+{
+	width:100%;
+	overflow-x:auto;
+}
