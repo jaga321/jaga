@@ -1,0 +1,33 @@
+@media print
+{
+.search_table{display:block !important;}		
+.pageheader,.leftpanel,.headerwrapper,.print_btn,.hide_class,.search_table_hide,.nav-tabs{display:none;}
+.mainpanel{margin-left: 0px;}
+.contentpanel{margin-top:-70px !important;}		
+.contentpanel{margin-top:0px;}
+.header{ display:none;}
+.btn, input[type="button"]{ display:none;}
+.main_footer{ display:none;}
+.print_use{ /*display:none;*/}
+.print_admin_use{ display:none;}
+.print_header{ display:block;}
+.mainwrapper:before{border-right: 0px solid #fff;}
+.form-control{ border:0px;}
+.tab-content-info{border:none;}
+.div_align
+{
+	width:45%;
+	float:left;
+}
+.div_align1
+{
+	width:100%;
+	float:left;
+}
+.div_align2
+{
+	width:100%;
+	float:left;
+}
+}
+@page {margin: 0.8cm;}
