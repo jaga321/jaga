@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html class="no-js">
 <head>
  <?php
 	$user_det = $this->session->userdata('logged_in');
@@ -36,7 +33,6 @@
 
   <!-- App CSS -->
   <link rel="stylesheet" href="<?=$theme_path; ?>/css/target-admin.css">
-  <link rel="stylesheet" href="<?=$theme_path; ?>/css/custom.css">
 
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -58,7 +54,7 @@
         <i class="fa fa-cogs"></i>
       </button>
 
-      <a class="navbar-brand navbar-brand-image" href="#">
+      <a class="navbar-brand navbar-brand-image" href="<?php echo $this->config->item('base_url').'enquiry/enquiry'?>">
         <img src="<?=$theme_path; ?>/img/logo.png" style="width:147px;" alt="Site Logo" >
       </a>
 
@@ -99,16 +95,15 @@
                                 
                                 <li>
                                   <a href="<?php echo $this->config->item('base_url').'admin/account'?>">
-                                   <i class="fa fa-cogs"></i> 
-                                     
-                                    &nbsp;&nbsp;Account
+                                   <i class="fa fa-cogs"></i>
+                                    &nbsp;&nbsp;My Profile
                                   </a>
                                 </li>
                     
                                 <li>
                                   <a href="<?php echo $this->config->item('base_url').'user/user'?>">
                                   <i class="fa fa-user"></i>
-                                    &nbsp;&nbsp;Users
+                                    &nbsp;&nbsp;Add Users
                                   </a>
                                 </li>
                                   <?php } ?>
@@ -150,24 +145,17 @@
 
     <div class="mainbar-collapse collapse">
 
-      <ul class="nav navbar-nav mainbar-nav">
-
-        
-
-        <li class="dropdown">
-         
+      <ul class="nav navbar-nav mainbar-nav">         
             
-             <li class="active"></li>
-                        <li><a href="<?php echo $this->config->item('base_url').'enquiry/enquiry'?>">Enquiry</a></li>
-                        <li><a href="<?php echo $this->config->item('base_url').'lead/lead'?>">Lead</a></li>
-                        <li><a href="<?php echo $this->config->item('base_url').'enquiry/add_enquiry'?>">Add Enquiry</a></li>
+                        <li class="active"><a href="<?php echo $this->config->item('base_url').'enquiry/enquiry'?>"><i class="fa fa-dashboard"></i>Enquiry</a></li>
+                        <li><a href="<?php echo $this->config->item('base_url').'lead/lead'?>"><i class="fa fa-align-justify"></i>Lead</a></li>
+                        <li><a href="<?php echo $this->config->item('base_url').'enquiry/add_enquiry'?>"><i class="fa fa-plus-square-o"></i>Add Enquiry</a></li>
 						<?php if($user_det['log_type']!='Agent'){ ?>
-                        <li><a href="<?php echo $this->config->item('base_url').'user/user'?>">Add User</a></li>
+                        <li><a href="<?php echo $this->config->item('base_url').'user/user'?>"><i class="fa fa-plus-square"></i>Add User</a></li>
                         
                         
                        <?php } ?>
-           
-        </li>
+    
       </ul>
 
     </div> <!-- /.navbar-collapse -->   
@@ -228,6 +216,12 @@
   <script src="<?=$theme_path; ?>/js/plugins/sparkline/jquery.sparkline.min.js"></script>
   <script src="<?=$theme_path; ?>/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
   <script src="<?=$theme_path; ?>/js/plugins/fullcalendar/fullcalendar.min.js"></script>
+  
+  <!-- Plugin JS -->
+  <script src="<?=$theme_path; ?>/js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?=$theme_path; ?>/js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="<?=$theme_path; ?>/js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="<?=$theme_path; ?>/js/plugins/icheck/jquery.icheck.min.js"></script>
 
   <!-- App JS -->
   <script src="<?=$theme_path; ?>/js/target-admin.js"></script>

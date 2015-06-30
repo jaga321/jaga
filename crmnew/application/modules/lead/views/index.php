@@ -33,15 +33,21 @@ if(isset($customers) && !empty($customers))
 		<div class="col-md-12">
 			<div class="portlet">
     			<div class="portlet-header">
-					<h3><i class="fa fa-table">View</i></h3>
-                    <div align="right"><button class="btn btn-info btn-xs" onclick="fnExcelReport()" style="float:right; margin-right:40px;" 
-                                   id="export" >Export</button></div>
+					<h3 style="width:100%"><i class="fa fa-table"></i> View 
+                    	<table class="pull-right"><tr><td><button class="btn btn-info btn-xs" onclick="fnExcelReport()" id="export" >Export</button></td></tr></table>
+                    </h3>
+                    
 				</div> <!-- /.portlet-header -->
                  
-
-                    <table 
-                    class="table table-striped table-bordered table-hover" id="export_test" 
-                    data-provide="datatable">
+					<div class="portlet-content filter_result">
+                    <table class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
+                        data-provide="datatable" 
+                        data-display-rows="10"
+                        data-info="true"
+                        data-search="true"
+                        data-length-change="true"
+                        data-paginate="true"
+                           >
                    		 <thead>
                            <tr>
                             <th>LEAD.No</th>
@@ -237,6 +243,7 @@ if(isset($customers) && !empty($customers))
                     }
                     ?>
                  </table>
+                 </div>
                     <?php // echo "<pre>"; print_r($customers);exit;
                     if(isset($customers) && !empty($customers))
                       {

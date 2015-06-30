@@ -29,48 +29,14 @@
   <![endif]-->
 </head>
 
-<body class="account-bg">
-
-<div class="navbar">
-
-  <div class="container">
-
-    <div class="navbar-header">
-
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <i class="fa fa-cogs"></i>
-      </button>
-
-      
-
-    </div> <!-- /.navbar-header -->
-
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">   
-
-       
-      </ul>
-       
-
-    </div> <!--/.navbar-collapse -->
-
-  </div> <!-- /.container -->
-
-</div> <!-- /.navbar -->
-
-<hr class="account-header-divider">
-
+<body class="login_bg">
 <div class="account-wrapper">
-
   <div class="account-logo">
   <div align="center">
-    <img src="<?=$theme_path; ?>/img/logo-login.png" alt="Target Admin">
+    	<img src="<?=$theme_path; ?>/img/login_logo.png" alt="Target Admin">
     </div>
   </div>
-
     <div class="account-body">
-
-      <h3 class="account-body-title">Welcome Admin.</h3>
          <form action="<?php echo $this->config->item('base_url'); ?>admin/verify" method="post" onsubmit="return validate();">
             <p class="clearfix" align="center";>
             <div class="form-group">
@@ -88,7 +54,7 @@
                         <input type="password" id="password" class="large form-control" value="" name="upass" required placeholder="Password" />
                         </div>
                         
-                        <button class="large button button-gray fr" type="submit">Login</button>
+                        <button class="btn btn-primary btn-block btn-lg" type="submit">Login <i class="fa fa-play-circle"></i></button>
 			</p>
 			<p class="clearfix">
 				<!--<span class="fl">

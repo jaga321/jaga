@@ -1,22 +1,10 @@
-  <?php $theme_path = $this->config->item('theme_locations').$this->config->item('active_template'); 
-  ?>
+<?php $theme_path = $this->config->item('theme_locations').$this->config->item('active_template'); ?>
    
   
   <div class="content">
     <div class="content-container">
       <div class="content-header">
-        <h2 class="content-header-title">Enquiry View</h2>
-        <ol class="breadcrumb">
-        </ol>
-          
-        <div class="navbar-header">
-
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <i class="fa fa-cogs"></i>
-      </button>
-
-      
-    </div>
+        <h2 class="content-header-title">Enquiry View</h2>        
       </div> <!-- /.content-header -->
       <div class="row">
 
@@ -26,52 +14,68 @@
 
             <div class="portlet-header">
 
-              <h3>
+              <h3 style="width:100%">
                 <i class="fa fa-table"></i>
                 View
+                <table class="pull-right">
+                     <tr>
+                        <td>
+                            <?php
+                                        $user_det = $this->session->userdata('logged_in'); 
+                                        if($user_det['log_type']!='Agent'){ ?>
+                                            <select class="pull-left" id="agent_id">
+                                                <option value="">Select</option>
+                                                 <?php 
+                                                        if(isset($agents) && !empty($agents))
+                                                        {
+                                                            foreach($agents as $val)
+                                                            {?>
+                                                               
+                                                                <option value="<?=$val['id']?>" ><?=$val['username']?></option>
+                                                            
+                                                      <?php }
+                                                        }?>
+                                            </select>&nbsp;&nbsp;
+                                        <input type="button" name="allo_agent" class="btn btn-info btn-xs agent_all" id="a_allocate" 
+                                              style="alignment-adjust:middle" value="Allocate" />
+                                        <?php } ?>
+                        </td>
+                        <td width="20">&nbsp;</td>
+                        <td>
+                                        
+                                        <button class="btn btn-info btn-xs" onclick="fnExcelReport()" style="float:right;" 
+                                           id="export" >Export</button><?php if($user_det['log_type']!='Agent'){ ?>
+                                        <select class="filter_data pull-right" style="float:right; margin-right:10px;">
+                                            <option value="">Select</option>
+                                            <option value="0">All</option>
+                                            <option value="1">Approved</option>
+                                            <option value="2">Rejected</option>
+                                        </select>
+                                            <?php }?>
+                        </td>
+                        <td width="10">&nbsp;</td>               		
+                        <td><button class="btn btn-info btn-xs" >Inport</button></td>
+                                        </tr>
+              </table>
               </h3>
 
             </div> <!-- /.portlet-header -->
             
             
             <div>
-            <table>
-             <tr >
-                                <?php
-								$user_det = $this->session->userdata('logged_in'); 
-								if($user_det['log_type']!='Agent'){ ?>
-                                    <select class="pull-left"  id="agent_id">
-                                        <option value="">Select</option>
-                                         <?php 
-                                                if(isset($agents) && !empty($agents))
-                                                {
-                                                    foreach($agents as $val)
-                                                    {?>
-                                                       
-                                                        <option value="<?=$val['id']?>" ><?=$val['username']?></option>
-                                                    
-                                              <?php }
-                                                }?>
-                                    </select>&nbsp;&nbsp;
-                                <input type="button" name="allo_agent" class="btn btn-info btn-xs agent_all" id="a_allocate" 
-                                      style="alignment-adjust:middle" value="Allocate" />
-                                <?php } ?>
-                                <button class="btn btn-info btn-xs" onclick="fnExcelReport()" style="float:right; margin-right:40px;" 
-                                   id="export" >Export</button><?php if($user_det['log_type']!='Agent'){ ?>
-                                <select class="filter_data pull-right" style="float:right; margin-right:10px;">
-                                    <option value="">Select</option>
-                                    <option value="0">All</option>
-                                    <option value="1">Approved</option>
-                                    <option value="2">Rejected</option>
-                                </select>
-                                	<?php }?>
-                               		
-                                </tr>
-              </table>
+            
             </div>
-
+			
             <div class="portlet-content filter_result"> 
-            <table class="table table-bordered tablesort selectable paginate full" id="test_export">
+            <table 
+                class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
+                data-provide="datatable" 
+                data-display-rows="10"
+                data-info="true"
+                data-search="true"
+                data-length-change="true"
+                data-paginate="true"
+              >
                 <thead>
                     <tr>
                         <?php
@@ -186,7 +190,7 @@
         </div> <!-- /.col -->
 
       </div> <!-- /.row -->
-       <script type="text/javascript" src="<?= $theme_path; ?>/js/jquery-1.8.2.js"></script>
+       <!--<script type="text/javascript" src="<?= $theme_path; ?>/js/jquery-1.8.2.js"></script>-->
     <script>
 $(".status").on('click',function() 
 {
