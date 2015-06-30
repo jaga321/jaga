@@ -29,7 +29,7 @@
 |
 
 */
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/crmnew/';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/icrmnew/trunk/crmnew/';
 
 /*$config['base_url']	= 'http://192.168.1.30/ots_svn/trunk/code/hive/';*/
 //$config['base_url']	= 'http://localhost/ots-tc/trunk/code/hive_tm/';
