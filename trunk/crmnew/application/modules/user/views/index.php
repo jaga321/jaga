@@ -44,53 +44,61 @@
                <!-- /.portlet-header -->
                <div class="portlet-content">
                   <form class="form-horizontal"   method="post">
-                     <div class="form-group">
-                        <label class="col-md-2">Name</label>
-                        <div class="col-md-4">
-                           <input type="text" name="name" class="form-control" placeholder="Enter your name" required="required">
+                  	<div class="row">
+           				<div class="col-md-6">
+                        	<div class="form-group">
+                                <label class="col-md-4">Name</label>
+                                <div class="col-md-8">
+                                   <input type="text" name="name" class="form-control" placeholder="Enter your name" required="required">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-4">User Id</label>
+                                <div class="col-md-8">
+                                   <input type="uid" name="user_id" class="form-control" placeholder="User Id" required="required">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-4">Password</label>
+                                <div class="col-md-8">
+                                   <input type="password" name="password" class="form-control" required="required" placeholder="max. 30 char." maxlength="30">
+                                </div>
+                             </div>
+                        </div>
+                        <div class="col-md-6">
+                        	<div class="form-group">
+                                <label class="col-md-4">Phone Number</label>
+                                <div class="col-md-8">
+                                   <input type="text" name="p_number" placeholder="Phone Number" class="form-control" required="required" maxlength="12">
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-4">Address</label>
+                                <div class="col-md-8">
+                                   <textarea name="address" required="required" class="form-control"  ></textarea>
+                                </div>
+                             </div>
+                             <div class="form-group">
+                                <label class="col-md-4">User Type</label>
+                                <div class="col-md-8">
+                                   <select  name="user_type" id="designation" class="form-control">
+                                      <option id="2">VLE</option>
+                                      <option id="3">FLD</option>
+                                      <option id="4">Delear</option>
+                                      <option id="5">Agent</option>
+                                   </select>
+                                </div>
+                             </div>
+                             <div class="form-group" style="display:none;" id="crt_point">
+                                <label class="col-md-4">Credit Points</label>
+                                <div class="col-md-8">
+                                   <input type="text" name="credit_point" placeholder="Credit Points" class="form-control"  maxlength="12">
+                                </div>
+                             </div>
                         </div>
                      </div>
-                     <div class="form-group">
-                        <label class="col-md-2">User Id</label>
-                        <div class="col-md-4">
-                           <input type="uid" name="user_id" class="form-control" placeholder="User Id" required="required">
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label class="col-md-2">Password</label>
-                        <div class="col-md-4">
-                           <input type="password" name="password" class="form-control" required="required" placeholder="max. 30 char." maxlength="30">
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label class="col-md-2">Phone Number</label>
-                        <div class="col-md-4">
-                           <input type="text" name="p_number" placeholder="Phone Number" class="form-control" required="required" maxlength="12">
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label class="col-md-2">Address</label>
-                        <div class="col-md-4">
-                           <textarea name="address" required="required" class="form-control"  ></textarea>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label class="col-md-2">User Type</label>
-                        <div class="col-md-4">
-                           <select  name="user_type" id="designation" class="form-control">
-                              <option id="2">VLE</option>
-                              <option id="3">FLD</option>
-                              <option id="4">Delear</option>
-                              <option id="5">Agent</option>
-                           </select>
-                        </div>
-                     </div>
-                     <div class="form-group" style="display:none;" id="crt_point">
-                        <label class="col-md-2">Credit Points</label>
-                        <div class="col-md-4">
-                           <input type="text" name="credit_point" placeholder="Credit Points" class="form-control"  maxlength="12">
-                        </div>
-                     </div>
+                     
+                     
                      <div class="form-group">
                         <div class="col-md-6">
                            <div align="center">
@@ -100,14 +108,28 @@
                         </div>
                      </div>
                   </form>
-                  <div class="portlet-header">
+                  
+                  <!-- /.table-responsive -->
+               </div>
+               
+               
+               <!-- /.portlet-content -->
+            </div>
+            <div class="portlet">
+            <div class="portlet-header">
                      <h3>
                         <i class="fa fa-table"></i>
                         View
                      </h3>
                   </div>
-                  <hr />
-                  <table class="table table-striped table-bordered table-hover">
+                  <div class="portlet-content filter_result">
+                  <table class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
+                        data-provide="datatable" 
+                        data-display-rows="10"
+                        data-info="true"
+                        data-search="true"
+                        data-length-change="true"
+                        data-paginate="true">
                      <thead>
                         <tr>
                            <th>S.NO</th>
@@ -163,10 +185,8 @@
                         }
                          ?>
                   </table>
-                  <!-- /.table-responsive -->
-               </div>
-               <!-- /.portlet-content -->
-            </div>
+                  </div>
+                  </div>
             <!-- /.portlet -->
          </div>
       </div>
