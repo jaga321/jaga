@@ -57,11 +57,12 @@ if(isset($customers) && !empty($customers))
             
             <form class="form-horizontal"   method="post">
             <div class="row">
+            <?php if($user_det['log_type']!='Agent'){ ?>
            		<div class="col-md-6">
                       <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control">
                         <input type="hidden" name="enquiry[source]" value="website" class="form-control">
                     
-                       <?php if($user_det['log_type']!='Agent'){ ?>
+                       
                     <div class="form-group">
                       <label class="col-md-4">User Name</label>
                       <div class="col-md-8">
@@ -134,9 +135,9 @@ if(isset($customers) && !empty($customers))
                 </div>
             </div>
             
-            
+            <div class="clearfix"></div>
             <div class="form-group">
-            <div class="col-md-6">
+            <div class="col-md-12">
             <div align="center">
             
                 <button class="btn btn-info" type="submit"><span class="accept"></span>Add</button>
@@ -146,67 +147,76 @@ if(isset($customers) && !empty($customers))
             </div>
             <?php } else
 			{?>
-            <div class="form-group">
-              <label class="col-md-2">User Name</label>
-              <div class="col-md-4">
-              <input type="text" name="enquiry[userid]" placeholder="Enter your name" value="<?php echo $user_det['userid'];?>" class="form-control" required="required" readonly="readonly">
-              <input type="hidden" name="enquiry[agent_id]" placeholder="Remarks" value="<?php echo $user_det['user_id'];?>" class="form-control" maxlength="30">
-              <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control">
-                <input type="hidden" name="enquiry[source]" value="website" class="form-control">
-              
-               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2">Name</label>
-              <div class="col-md-4">
-              <input type="text" name="enquiry[name]" placeholder="Enter your name" class="form-control" required="required">
-              
-               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2"></label>
-              <div class="col-md-4">
-              <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control" required="required" maxlength="12">
-              
-              </div>
-            </div>
-           
-            <div class="form-group">
-              <label class="col-md-2">Phone Number</label>
-              <div class="col-md-4">
-              <input type="uid" name="enquiry[phone]" placeholder="Phone Number" class="form-control" required="required" maxlength="12">
-              
-              </div>
-            </div>
-             <div class="form-group">
-              <label class="col-md-2">District</label>
-              <div class="col-md-4">
-              <input type="text" name="enquiry[distic]" placeholder="District" class="form-control" required="required" maxlength="30">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2">Village</label>
-              <div class="col-md-4">
-              <input type="text" name="enquiry[village]" placeholder="Village" required="required" class="form-control" maxlength="30">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2">Product Type</label>
-              <div class="col-md-4">
-              <select name="enquiry[product_type]" class="form-control" placeholder="Prouduct Type" required="required">
-                <option value="3HP">3HP</option>
-                <option value="5HP">5HP</option>
-                <option value="7.5HP">7.5HP</option>
-                <option value="10HP">10HP</option>
-              </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2">Remarks</label>
-              <div class="col-md-4">
-              <input type="text" name="enquiry[remarks]" placeholder="Remarks" required="required" class="form-control" maxlength="30">
-              </div>
-            </div>
+            <div class="clearfix"></div>
+            <div class="row">
+           		<div class="col-md-6">
+                	<div class="form-group">
+                      <label class="col-md-4">User Name</label>
+                      <div class="col-md-8">
+                      <input type="text" name="enquiry[userid]" placeholder="Enter your name" value="<?php echo $user_det['userid'];?>" class="form-control" required="required" readonly="readonly">
+                      <input type="hidden" name="enquiry[agent_id]" placeholder="Remarks" value="<?php echo $user_det['user_id'];?>" class="form-control" maxlength="30">
+                      <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control">
+                        <input type="hidden" name="enquiry[source]" value="website" class="form-control">
+                      
+                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4">Name</label>
+                      <div class="col-md-8">
+                      <input type="text" name="enquiry[name]" placeholder="Enter your name" class="form-control" required="required">
+                      
+                       </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-4"></label>
+                      <div class="col-md-8">
+                      <input type="hidden" name="enquiry[post_dt]" value="<?php echo $cur_time = date("Y-m-d H:i:s"); ?>" class="form-control" required="required" maxlength="12">
+                      
+                      </div>
+                    </div>
+                   
+                    <div class="form-group">
+                      <label class="col-md-4">Phone Number</label>
+                      <div class="col-md-8">
+                      <input type="uid" name="enquiry[phone]" placeholder="Phone Number" class="form-control" required="required" maxlength="12">
+                      
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-md-4">District</label>
+                      <div class="col-md-8">
+                      <input type="text" name="enquiry[distic]" placeholder="District" class="form-control" required="required" maxlength="30">
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="form-group">
+                          <label class="col-md-4">Village</label>
+                          <div class="col-md-8">
+                          <input type="text" name="enquiry[village]" placeholder="Village" required="required" class="form-control" maxlength="30">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-4">Product Type</label>
+                          <div class="col-md-8">
+                          <select name="enquiry[product_type]" class="form-control" placeholder="Prouduct Type" required="required">
+                            <option value="3HP">3HP</option>
+                            <option value="5HP">5HP</option>
+                            <option value="7.5HP">7.5HP</option>
+                            <option value="10HP">10HP</option>
+                          </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-md-4">Remarks</label>
+                          <div class="col-md-8">
+                          <input type="text" name="enquiry[remarks]" placeholder="Remarks" required="required" class="form-control" maxlength="30">
+                          </div>
+                        </div>
+                </div>
+             </div>   
+            
+            
             <div class="form-group">
             <div class="col-md-6">
             <div align="center">
