@@ -1057,13 +1057,18 @@ input[type="checkbox"] {
     color: #fff;
     background-color: #117c67;
   }
+  .dataTables_wrapper
+	{
+		width:100%;
+		overflow-x:auto;
+	}
 }
 /* ==Content [.content]*/
 /* ----------------------------------------------- */
 .content {
   position: relative;
   width: 100%;
-  padding-top: 20px;
+  padding-top: 5px;
   background: #fff;
 }
 .content::before {
@@ -3123,9 +3128,4 @@ ul.support-list li {
 .portlet .portlet-header h3 table
 {
 	font-size:12px;
-}
-.dataTables_wrapper
-{
-	width:100%;
-	overflow-x:auto;
 }
