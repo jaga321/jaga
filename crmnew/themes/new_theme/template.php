@@ -15,10 +15,7 @@
  <title><?=$this->config->item('site_title'); ?> | <?= $this->config->item('site_powered'); ?></title>    	
         <?php  $theme_path = $this->config->item('theme_locations').$this->config->item('active_template'); ?>
 
-  <meta charset="utf-8">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
-
+  <link rel="shortcut icon" href="<?=$theme_path; ?>/img/favicon.png">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300,700">
   <link rel="stylesheet" href="<?=$theme_path; ?>/css/font-awesome.min.css">
@@ -32,7 +29,7 @@
   <link rel="stylesheet" href="<?=$theme_path; ?>/js/plugins/fullcalendar/fullcalendar.css">
 
   <!-- App CSS -->
-  <link rel="stylesheet" href="<?=$theme_path; ?>/css/target-admin.css">
+  <link rel="stylesheet" href="<?=$theme_path; ?>/css/my-style.css">
 
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -178,26 +175,15 @@
 
 
 <footer class="footer">
-
   <div class="container">
-
     <div class="row">
-
       <div class="col-sm-12">
-
-      
-       <p>  <div align="right">Powered by <a href="http://www.i2softwaretechsolutions.com">i2softwaretechsolutions Pvt.Ltd.</a></div>
-  
-            <a href="http://www.suryapowermagic.com">Surya Powermagic</a>  All Rights Reserved.</p>
-
-
-      </div> <!-- /.col -->
-
-     
-    </div> <!-- /.row -->
-
-  </div> <!-- /.container -->
-  
+       <div>Copyright &copy; <a href="http://www.suryapowermagic.com" target="_blank"> AK Surya PowerMagic Pvt. Ltd.,  </a>2015
+       <span class="pull-right">Powered by <a href="http://www.i2softwaretechsolutions.com" target="_blank">i2softwaretechsolutions Pvt.Ltd.</a></span>
+       </div>
+      </div>
+    </div> 
+  </div>   
 </footer>
 
   <script src="<?=$theme_path; ?>/js/libs/jquery-1.10.1.min.js"></script>
