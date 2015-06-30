@@ -34,10 +34,13 @@ if(isset($customers) && !empty($customers))
 			<div class="portlet">
     			<div class="portlet-header">
 					<h3><i class="fa fa-table">View</i></h3>
+                    <div align="right"><button class="btn btn-info btn-xs" onclick="fnExcelReport()" style="float:right; margin-right:40px;" 
+                                   id="export" >Export</button></div>
 				</div> <!-- /.portlet-header -->
+                 
 
                     <table 
-                    class="table table-striped table-bordered table-hover" 
+                    class="table table-striped table-bordered table-hover" id="export_test" 
                     data-provide="datatable">
                    		 <thead>
                            <tr>
@@ -228,7 +231,7 @@ if(isset($customers) && !empty($customers))
                     	?>
                     </tr>
                    			 <tr>
-                    			<td colspan="7">No Data Found</td>
+                    			<td colspan="13">No Data Found</td>
                     		 </tr>
                     <?php
                     }
@@ -556,5 +559,35 @@ if(isset($customers) && !empty($customers))
         }
     });
 </script>
+<script>
+function fnExcelReport()
+{
+    var tab_text="<table border='5px'><tr width='100px' bgcolor='#87AFC6'>";
+    var textRange; var j=0;
+    tab = document.getElementById('export_test'); // id of table
+    for(j = 0 ; j < tab.rows.length ; j++) 
+    {     
+        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+        //tab_text=tab_text+"</tr>";
+    }
+    tab_text=tab_text+"</table>";
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE "); 
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html","replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus(); 
+        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+    }  
+    else                 //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));  
+    return (sa);
+}
+   </script> 
  
 
