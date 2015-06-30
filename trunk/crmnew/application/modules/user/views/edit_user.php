@@ -6,17 +6,6 @@
     <div class="content-container">
         <div class="content-header">
             <h2 class="content-header-title">Edit User</h2>
-            <ol class="breadcrumb">
-            </ol>
-
-            <div class="navbar-header">
-
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-cogs"></i>
-                </button>
-
-
-            </div>
         </div>
         <!-- /.content-header -->
         <div class="row">
