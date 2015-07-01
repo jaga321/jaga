@@ -126,11 +126,11 @@
                      <thead>
                         <tr>
                            <th>S.NO</th>
-                           <th>Name</th>
-                           <th>User Id</th>
+                           <th  data-sortable="true">Name</th>
+                           <th  data-sortable="true">User Id</th>
                            <th>Phone Number</th>
-                           <th>Address</th>
-                           <th>User Type</th>
+                           <th  data-sortable="true">Address</th>
+                           <th  data-sortable="true">User Type</th>
                            <th>Credit Points </th>
                            <th>Action</th>
                         </tr>

@@ -34,7 +34,7 @@ if(isset($customers) && !empty($customers))
 				</div> <!-- /.portlet-header -->
                  
 					<div class="portlet-content filter_result">
-                    <table class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
+                    <table class="table table-striped table-bordered table-hover table-highlight table-checkable" id="export_test" 
                         data-provide="datatable" 
                         data-display-rows="10"
                         data-info="true"
@@ -44,14 +44,14 @@ if(isset($customers) && !empty($customers))
                            >
                    		 <thead>
                            <tr>
-                            <th>LEAD.No</th>
-                            <th>Enquiry source</th>
-                            <th>Name</th>
+                            <th data-sortable="true">LEAD.No</th>
+                            <th data-sortable="true">Enquiry source</th>
+                            <th data-sortable="true">Name</th>
                             <th>Phone Number</th>
-                            <th>Village</th>
-                            <th>District</th>
-                            <th>Product Type</th>
-                            <th>Date</th>
+                            <th data-sortable="true">Village</th>
+                            <th data-sortable="true">District</th>
+                            <th data-sortable="true">Product Type</th>
+                            <th data-sortable="true">Date</th>
                             <th>Period</th>
                             <th>Dealer</th>
                             <th>Status</th>
@@ -408,11 +408,12 @@ if(isset($customers) && !empty($customers))
 <script type="text/javascript" src="<?= $theme_path; ?>/js/jquery-1.8.2.js"></script>
 <script>
     $(".go").live('click', function() {
-		$('.submit').hide();
+		
         idno = ($(this).attr('class'));
         var splitNumber = idno.split('_');
         var id = splitNumber[2];
-		$('.submit'+id).val();
+		$('.submit' + id).hide();
+		
 		
         var days = $('.days_cls' + id).val();
         var user_id = $('.user_id_' + id).val();
@@ -444,7 +445,7 @@ if(isset($customers) && !empty($customers))
             });
         } else {
             alert('Day and Dealer should no be empty');
-			$('.submit').show();
+			$('.submit' + id).show();
         }
     });
 
