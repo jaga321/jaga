@@ -80,7 +80,7 @@
 						    else
 							{
 								
-                                echo Administrator;
+                                echo 'Administrator';
 						 } ?>
             <span class="navbar-profile-label">rod@rod.me &nbsp;</span>
             <i class="fa fa-caret-down"></i>
@@ -142,9 +142,10 @@
 
     <div class="mainbar-collapse collapse">
 
-      <ul class="nav navbar-nav mainbar-nav">         
+      <ul class="nav navbar-nav mainbar-nav">  
+             
             
-                        <li class="active"><a href="<?php echo $this->config->item('base_url').'enquiry/enquiry'?>"><i class="fa fa-dashboard"></i>Enquiry</a></li>
+                        <li><a href="<?php echo $this->config->item('base_url').'enquiry/enquiry'?>"><i class="fa fa-dashboard"></i>Enquiry</a></li>
                         <li><a href="<?php echo $this->config->item('base_url').'lead/lead'?>"><i class="fa fa-align-justify"></i>Lead</a></li>
                         <li><a href="<?php echo $this->config->item('base_url').'enquiry/add_enquiry'?>"><i class="fa fa-plus-square-o"></i>Add Enquiry</a></li>
 						<?php if($user_det['log_type']!='Agent'){ ?>
