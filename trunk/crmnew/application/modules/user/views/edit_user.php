@@ -33,14 +33,14 @@
                                 <label class="col-md-2">Name</label>
                                 <div class="col-md-4">
 
-                                    <input type="text" name="name_up" class="form-control" value="<?php echo $cus[" username "]; ?>" required="required">
+                                    <input type="text" name="name_up" class="form-control" value="<?php echo $cus["username"]; ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2">User Id</label>
                                 <div class="col-md-4">
 
-                                    <input type="uid" name="user_id_up" class="form-control" value="<?php echo $cus[" user_id "]; ?>" required="required">
+                                    <input type="uid" name="user_id_up" class="form-control" value="<?php echo $cus["user_id"]; ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label class="col-md-2">Phone Number</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="p_number_up" class="form-control" value="<?php echo $cus[" phone_no "]; ?>" 
+                                    <input type="text" name="p_number_up" class="form-control" value="<?php echo $cus["phone_no"]; ?>" 
                                     required="required" maxlength="12">
                                 </div>
                             </div>
@@ -71,6 +71,7 @@
                                 <label class="col-md-2">User Type</label>
                                 <div class="col-md-4">
                                     <select id='designation' name='user_type_up' class="form-control">
+                                    <option <?=($cus[ 'log_type']=='Agent' )? 'selected': '';?> id="1">Agent</option>
                                         <option <?=($cus[ 'log_type']=='VLE' )? 'selected': '';?> id="2">VLE</option>
                                         <option <?=($cus[ 'log_type']=='FLD' )? 'selected': '';?> id="3">FLD</option>
                                         <option <?=($cus[ 'log_type']=='Delear' )? 'selected': '';?> id="4">Delear</option>
@@ -81,7 +82,7 @@
                             <div class="form-group" id="crt_point">
                                 <label class="col-md-2">Credit Points</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="credit_point_up" value="<?php echo $cus[" del_point "]; ?>"
+                                    <input type="text" name="credit_point_up" value="<?php echo $cus["del_point"]; ?>"
                                      class="form-control" required="required" maxlength="12">
                                 </div>
                             </div>
@@ -90,7 +91,7 @@
                             <div class="form-group" style="display:none;" id="crt_point">
                                 <label class="col-md-2">Credit Points</label>
                                 <div class="col-md-4">
-                                    <input type="text" name="credit_point_up" value="<?php echo $cus[" del_point "]; ?>" class="form-control"
+                                    <input type="text" name="credit_point_up" value="<?php echo $cus["del_point"]; ?>" class="form-control"
                                     id="point" maxlength="12">
                                 </div>
                             </div>

@@ -54,7 +54,8 @@
                                             <?php }?>
                         </td>
                         <td width="10">&nbsp;</td>               		
-                        <td><button class="btn btn-info btn-xs" >Inport</button></td>
+                        <td>
+                        <a href="<?php echo $this->config->item('base_url')?>enquiry/import_enqury"  class="btn btn-info btn-xs">Import</a></td>
                                         </tr>
               </table>
               </h3>
@@ -83,18 +84,18 @@
                             if($user_det['log_type']!='Agent'){ ?>
                         <th><input type="checkbox" name="allocate" class="chkSelectAll test_hide"/></th>
                         <?php } ?>
-                        <th>S.NO</th>
+                        <th  data-sortable="true">S.NO</th>
                         <th>Enquiry source</th>
-                        <th>Name</th>
+                        <th  data-sortable="true">Name</th>
                         <th>Phone Number</th>
-                        <th>Village</th>
-                        <th>District</th>
-                        <th>Product Type</th>
-                         <th>Date</th>
-                         <th>Source</th>
-                        <th>Status</th>
+                        <th  data-sortable="true">Village</th>
+                        <th  data-sortable="true">District</th>
+                        <th  data-sortable="true">Product Type</th>
+                         <th  data-sortable="true">Date</th>
+                         <!--<th  data-sortable="true">Source</th>-->
+                        <th  data-sortable="true">Status</th>
                         <?php if($user_det['log_type']!='Agent'){ ?>
-                        <th>Allocated to</th>
+                        <th  data-sortable="true">Allocated to</th>
                         <?php } ?>
                         <th>Action</th>
                    
@@ -129,7 +130,7 @@
                      <td><?php echo $cus["village"]; ?></td>
                      <td><?php echo $cus["product_type"]; ?></td>
                      <td><?php echo ($cus['post_dt']==0)?'--':date("d-M-Y",strtotime($cus["post_dt"])); ?></td>
-                     <td><?php echo ($cus["source"]); ?></td>
+                    <!-- <td><?php echo ($cus["source"]); ?></td>-->
                      <td><?php if($cus["approval_status"]==2){echo '<label style="color:red" class="status_approval">Rejected</label>';} 
                         else if($cus["approval_status"]==1){echo '<label class="status_approval" style="color:green">Approved</label>';}
                         else{echo '<label class="status_approval" style="color:blue">Pending</label>';} ?>
@@ -190,7 +191,7 @@
         </div> <!-- /.col -->
 
       </div> <!-- /.row -->
-       <!--<script type="text/javascript" src="<?= $theme_path; ?>/js/jquery-1.8.2.js"></script>-->
+       <script type="text/javascript" src="<?= $theme_path; ?>/js/jquery-1.8.2.js"></script>
     <script>
 $(".status").on('click',function() 
 {

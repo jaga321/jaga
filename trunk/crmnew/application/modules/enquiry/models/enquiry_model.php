@@ -188,4 +188,18 @@ class Enquiry_model extends CI_Model{
 	}
 	
 	
+	
+	//import option code add jaga
+	function import_comp($data)
+	
+     {
+		 //print_r("dsfdsf");exit;
+		 foreach($data as $val)
+		  {
+			$this->db->insert('enquiry', $val);
+		  }
+     }
+ //end import
+	
+	
 	}
