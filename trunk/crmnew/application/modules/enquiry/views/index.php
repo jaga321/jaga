@@ -54,8 +54,11 @@
                                             <?php }?>
                         </td>
                         <td width="10">&nbsp;</td>               		
-                        <td>
+                        <td>  <?php
+                     if($user_det['log_type']!='Agent'){?>
+                        
                         <a href="<?php echo $this->config->item('base_url')?>enquiry/import_enqury"  class="btn btn-info btn-xs">Import</a></td>
+						<?php }?>
                                         </tr>
               </table>
               </h3>
@@ -143,7 +146,8 @@
                         }
                         else
                         {
-                            echo "";
+							?>New<?php 
+                            
                         } ?>
                     
                      </td>
@@ -287,28 +291,7 @@ function fnExcelReport()
    </script> 
    <!--chekbox script-->
  <script type="text/javascript">
-    $(function () {
-     
-      $('.chkSelectAll').on('click',function()
-	  {
-		
-        $('.all_cate').attr('checked', $(this).is(':checked'));
-		
-      });
-
-      $('.all_cate').on('click',function()
-	  {
-        if ($('.all_cate:checked').length == $('.all_cate').length) 
-		{
-          $('.chkSelectAll').attr('checked', true);
-        }
-        else 
-		{
-          $('.chkSelectAll').attr('checked', false);
-        }
-      });
-
-    });
+    
 	
 	$('#a_allocate').on('click',function()
 	{
@@ -318,7 +301,6 @@ function fnExcelReport()
 			$(".all_cate").each(function ()
 			{
 				var t=$(this).val(); 
-				
 				if ($(this).is(":checked"))
 				{
 					myarray[i]=$(this).val();
@@ -336,8 +318,53 @@ function fnExcelReport()
       }    
     
     });
-	
-});
+ });
 	
   </script>
+  
+  <!--<script>
+  $(function () {
+     
+      $('.chkSelectAll').on('click',function()
+	  {
+		
+        $('.all_cate').attr('checked', $(this).is(':checked'));
+		
+      });
+     
+    });
+	</script>
+    -->
+    
+     
+<script type="text/javascript">
+$(function () {
+     
+      $('.chkSelectAll').on('click',function()
+	  {
+		
+        $('.all_cate').attr('checked', $(this).is(':checked'));
+		
+      });
+
+      $('.all_cate').on('click',function()
+	  {
+		  //alert('test');
+        if ($('.all_cate:checked').length == $('.all_cate').length) 
+		{
+          $('.chkSelectAll').attr('checked', true);
+		  // alert('test');
+        }
+        else 
+		{
+          $('.chkSelectAll').attr('checked', false);
+		   //alert('test');
+        }
+      });
+
+    });
+</script>
+
+
+  
  <!--chekbox script-->       

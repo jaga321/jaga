@@ -17,8 +17,8 @@
 
             <div class="portlet-content">
             <?php
-			$user_det = $this->session->userdata('logged_in');
 			
+			//echo "<pre>";print_r($by_id);exit;
 												
                         if(isset($by_id) && !empty($by_id))
 											{

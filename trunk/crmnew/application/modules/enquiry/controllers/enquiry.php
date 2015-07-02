@@ -37,6 +37,7 @@ class Enquiry extends MX_Controller {
 		if($user_det['log_type']!='Agent')
 		{
 			$data["customers"]=$this->enquiry_model->get_customer_list();
+			//echo "<pre>";print_r($data);
 			
 		}
 		else
@@ -114,6 +115,7 @@ class Enquiry extends MX_Controller {
 		$this->load->model('enquiry/enquiry_model');
 		$user_det = $this->session->userdata('logged_in'); 
 		$data["by_id"]=$this->enquiry_model->get_all_by_id($id);
+		//print_r($data);exit;
 		if($this->input->post())
 		{
 			$input=$this->input->post();
@@ -125,7 +127,6 @@ class Enquiry extends MX_Controller {
 		$data["users"]=$this->enquiry_model->get_all_users();
 		$this->template->set_master_template('../../themes/'.$this->config->item("active_template").'/template.php');
 		$this->template->write_view('content', 'enquiry/edit_enquiry',$data);
-		
         $this->template->render();       
 	}
 	
@@ -192,7 +193,7 @@ class Enquiry extends MX_Controller {
   
   $this->enquiry_model->import_comp($insert_csv);
   fclose($csvfile);
-  echo "File data successfully imported to database!!";
+  //echo "File data successfully imported to database!!";
   redirect($this->config->item('base_url')."enquiry/import_enqury", "refresh");
   //mysql_close($connect); 
  }
