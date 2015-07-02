@@ -74,6 +74,76 @@ class Lead extends MX_Controller {
 
 		
 	}
+public function lead_export()
+ {
+  $this->load->model('lead/lead_model');
+  
+ $data["customers"]=$this->lead_model->get_customer_list();
+ $data["cust"]=$this->lead_model->get_Dealer_list();
+  //load PHPExcel library
+  $this->load->library('Excel');
+  // Create new PHPExcel object
+  $objPHPExcel = new PHPExcel();
+  $objPHPExcel->setActiveSheetIndex(0);
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'LEAD.No');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Enquiry source');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Name');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Phone Number');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'Village');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'District');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Product Type');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Date');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Period');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Status');
+  $objPHPExcel->setActiveSheetIndex(0)->setCellValue('K1', 'Allocated to');
+   
+  
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('B')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('C')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('D')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('I')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('J')->setWidth(15);
+  $objPHPExcel->getActiveSheet(0)->getColumnDimension('K')->setWidth(15);
+ 
+  
+  
+  $objPHPExcel->getActiveSheet(0)->getStyle('A1:M1')->getFont()->setBold(true);
+        // Set fills
+       $objPHPExcel->getActiveSheet(0)->getStyle('A1:M1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID);
+        $objPHPExcel->getActiveSheet(0)->getStyle('A1:M1')->getFill()->getStartColor()->setARGB('3399ff');
+   $i=2;$j=1;
+   foreach($data['customers'] as $val)
+   {//echo "<pre>";print_r($val);exit;
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$i, $j);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$i, $val['userid']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$i, $val['name']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$i, $val['phone']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E'.$i, $val['distic']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$i, $val['village']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$i, $val['product_type']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H'.$i, $val['lead'][0]['post_dt']);
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I'.$i, $val['lead'][0]['days']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J'.$i, $val['lead'][0]['status']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K'.$i, $val['lead'][0]['delr_id']);
+    $i++;$j++;
+   }
+ 
+ 
+  // Rename worksheet (worksheet, not filename)
+  $objPHPExcel->getActiveSheet()->setTitle('Claims List');
+  ob_end_clean();
+  header('Content-type: application/vnd.ms-excel');
+  header('Content-Disposition: attachment;filename="report.xls"');
+  header('Cache-Control: max-age=0');
+  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+  $objWriter->save('php://output');
+  //redirect($this->config->item('base_url').'lead/');
+ }
+	
 	
 	
 	

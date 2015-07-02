@@ -26,10 +26,13 @@ class Enquiry_model extends CI_Model{
   public function get_customer_list()
   {
 		$this->db->select('enquiry.*');
-		$this->db->select('user.username');
+		$this->db->select('user.*');
 		$this->db->join('user','user.user_id=enquiry.userid');
 		$query = $this->db->get($this->table_name)->result_array();
 		//echo "<pre>"; print_r($query); exit;
+		
+		//select * from enquiry as a,user as b WHERE a.userid=b.user_id
+		
 		$i=0;
 		foreach($query as $val)
 		{
@@ -160,6 +163,7 @@ class Enquiry_model extends CI_Model{
 		$this->db->select('enquiry.*');
 		$this->db->where('id',$id);
 		$query = $this->db->get($this->table_name);
+		//print_r($query->result_array());exit;
 		if ($query->num_rows() >= 1) 
 		{
 			return $query->result_array();

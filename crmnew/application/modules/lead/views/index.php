@@ -28,7 +28,17 @@ if(isset($customers) && !empty($customers))
 			<div class="portlet">
     			<div class="portlet-header">
 					<h3 style="width:100%"><i class="fa fa-table"></i> View 
-                    	<table class="pull-right"><tr><td><button class="btn btn-info btn-xs" onclick="fnExcelReport()" id="export" >Export</button></td></tr></table>
+                    	<table class="pull-right">
+                        <tr>
+                         <?php $user_det = $this->session->userdata('logged_in'); 
+						       if($user_det['log_type']!='Agent'){?>
+                                      
+                                     
+                        <td>
+                         <a href="<?php echo $this->config->item('base_url')?>lead/lead_export" ><button type="button" class="btn btn-info btn-xs">Export</button></a>
+                        
+                        </td>   <?php }?>
+                        </tr></table>
                     </h3>
                     
 				</div> <!-- /.portlet-header -->
@@ -409,17 +419,17 @@ if(isset($customers) && !empty($customers))
 <script>
     $(".go").live('click', function() {
 		
+		
         idno = ($(this).attr('class'));
         var splitNumber = idno.split('_');
         var id = splitNumber[2];
-		$('.submit' + id).hide();
-		
-		
-        var days = $('.days_cls' + id).val();
+		$('.app_status_'+id).hide();
+		var days = $('.days_cls' + id).val();
         var user_id = $('.user_id_' + id).val();
         var dealer = $('.dealer_' + id).val();
         var status = $('.status_' + id).val();
         var d_stats = $('.check_' + id).val();
+		
         // var d_stats=$("input[name=d_stats"+id+"]:checked").val();
         //alert(d_stats); return false;
         if (days != '' && d_stats != 'undifined') {
@@ -444,8 +454,12 @@ if(isset($customers) && !empty($customers))
                 }
             });
         } else {
-            alert('Day and Dealer should no be empty');
-			$('.submit' + id).show();
+            alert('Day should no be empty');
+			 idno = ($(this).attr('class'));
+			var splitNumber = idno.split('_');
+			var id = splitNumber[2];
+			$('.app_status_'+id).show();
+			
         }
     });
 
@@ -485,6 +499,7 @@ if(isset($customers) && !empty($customers))
             });
         } else {
             alert('Days should not be empty');
+			
         }
 
     });
