@@ -193,7 +193,7 @@ class Enquiry extends MX_Controller {
   
   $this->enquiry_model->import_comp($insert_csv);
   fclose($csvfile);
-  //echo "File data successfully imported to database!!";
+  //print_r("File data successfully imported to database!!");
   redirect($this->config->item('base_url')."enquiry/import_enqury", "refresh");
   //mysql_close($connect); 
  }

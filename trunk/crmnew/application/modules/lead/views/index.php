@@ -61,7 +61,7 @@ if(isset($customers) && !empty($customers))
                             <th data-sortable="true">Village</th>
                             <th data-sortable="true">District</th>
                             <th data-sortable="true">Product Type</th>
-                            <th data-sortable="true">Date</th>
+                           
                             <th>Period</th>
                             <th>Dealer</th>
                             <th>Status</th>
@@ -86,7 +86,7 @@ if(isset($customers) && !empty($customers))
                     	<td><?php echo $cus["distic"]; ?></td>
                     	<td><?php echo $cus["village"]; ?></td>
                     	<td><?php echo $cus["product_type"]; ?></td>
-                    	<td><?php echo ($cus['lead'][0]['post_dt']==0)?'--':date("d-M-Y",strtotime($cus['lead'][0]["post_dt"])); ?></td>
+                    	
                        
                             <input type="hidden" value="<?=$cus['userid'];?>" name="user_id" class="user_id_<?=$cus['id'];?>" />
                             <?php if(!empty($cus["lead"][0]['l_id']))
@@ -272,7 +272,7 @@ if(isset($customers) && !empty($customers))
                             <input type="hidden" value="<?php echo $cus["lead"][0]['id']; ?>" name="lead_id"  />
                             <input type="hidden" name="id" value="<?php echo $cus['id'] ?>" />
                             <td  style="width: 107px;">Days</td>
-                            <td><input type="text" name="days" class="form-control"  id="employeename" value="<?php echo $cus["lead"][0]['days'] ?>" /></td>
+                            <td><input type="text" name="days" class="form-control" required="required"  id="employeename" value="<?php echo $cus["lead"][0]['days'] ?>" /></td>
                    	   </tr>
                        <tr>
                         <td>Status</td>
