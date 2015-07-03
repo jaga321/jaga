@@ -3129,3 +3129,8 @@ ul.support-list li {
 {
 	font-size:12px;
 }
+.wid100
+{
+	width:100%;
+	overflow-x:auto;
+}

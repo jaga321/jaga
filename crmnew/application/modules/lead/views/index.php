@@ -44,6 +44,7 @@ if(isset($customers) && !empty($customers))
 				</div> <!-- /.portlet-header -->
                  
 					<div class="portlet-content filter_result">
+                    <div class="wid100">
                     <table class="table table-striped table-bordered table-hover table-highlight table-checkable" id="export_test" 
                         data-provide="datatable" 
                         data-display-rows="10"
@@ -247,6 +248,7 @@ if(isset($customers) && !empty($customers))
                     }
                     ?>
                  </table>
+                 </div>
                  </div>
                     <?php // echo "<pre>"; print_r($customers);exit;
                     if(isset($customers) && !empty($customers))
