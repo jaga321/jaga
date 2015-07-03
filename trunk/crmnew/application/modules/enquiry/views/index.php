@@ -70,7 +70,8 @@
             
             </div>
 			
-            <div class="portlet-content filter_result"> 
+            <div class="portlet-content filter_result">
+            <div class="wid100"> 
             <table 
                 class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
                 data-provide="datatable" 
@@ -178,7 +179,7 @@
                    
                    
             </table>
-            
+            </div>
             
             
                       
