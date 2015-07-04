@@ -813,7 +813,7 @@ input[type="checkbox"] {
   color: #999999;
 }
 .navbar .navbar-nav > li > a {
-  color: #999999;
+  color: #fff;
   font-size: 13px;
 }
 .navbar .navbar-nav > li > a:hover,
