@@ -451,8 +451,9 @@ if(isset($customers) && !empty($customers))
                 success: function(result) {
                     // alert(result);
                     //$('#test').html(result);
+					for_response('Data Add please wait...!'); // resutl notification 
                     window.location.href = BASE_URL + 'lead/';
-                    // for_response_del('Data Delete Successfully...!'); // resutl notification   
+                     //for_response_del('Data Delete Successfully...!'); // resutl notification   
                 }
             });
         } else {

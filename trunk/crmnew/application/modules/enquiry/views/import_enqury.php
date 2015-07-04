@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label class="col-md-4"> File</label>
                        <div class="col-md-8">
-                         <input type="file" class="form-control" name="name_uplod" id="name_uplod">
+                         <input type="file" class="form-control" name="name_uplod" id="name_uplod" required="required">
                        </div>
                      </div>
                     <div class="form-group">
