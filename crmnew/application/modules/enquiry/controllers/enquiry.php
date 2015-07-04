@@ -115,10 +115,11 @@ class Enquiry extends MX_Controller {
 		$this->load->model('enquiry/enquiry_model');
 		$user_det = $this->session->userdata('logged_in'); 
 		$data["by_id"]=$this->enquiry_model->get_all_by_id($id);
-		//print_r($data);exit;
+		
 		if($this->input->post())
 		{
 			$input=$this->input->post();
+			//echo "<pre>";print_r($input);exit;
 	        $this->enquiry_model->update_enquiry_id($id,$input);
 			redirect($this->config->item('base_url')."enquiry/", "refresh",$data);
 		}

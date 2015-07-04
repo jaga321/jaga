@@ -218,6 +218,48 @@
   <script src="<?=$theme_path; ?>/js/demos/calendar.js"></script>
   <script src="<?=$theme_path; ?>/js/demos/charts/morris/area.js"></script>
   <script src="<?=$theme_path; ?>/js/demos/charts/morris/donut.js"></script>
+  <script type="text/javascript">
+  function for_loading(txt)
+  {
+   //THIS IS FOR NOTIFICATION WHEN AJAX LOAD STARTS, CODE STARTS HERE 
+   $('#dyna_div').addClass('my_alert-info').removeClass('my_alert-success');
+   $('#tick_img_spn').css('display','none');
+   $('#load_img_div').css('display','block');
+   $('#main_load_div').css('display','block');
+   $('#cls_inf_bt').css('display','none');
+   $('#info_txt').html(txt);
+   //THIS IS FOR NOTIFICATION WHEN AJAX LOAD STARTS, CODE ENDS HERE
+  }
+  
+  function for_response(txt) 
+  {
+   //THIS IS FOR NOTIFICATION WHEN AJAX LOAD RESPONSE CAME CODE STARTS HERE
+   $('#dyna_div').addClass('alert alert-success').removeClass('alert alert-success');
+   $('#main_load_div').css('display','block');   
+   $('#cls_inf_bt').css('display','block');
+   $('#load_img_div').css('display','none');
+   $('#tick_img_spn').css('display','block');
+   $('#info_txt').html(txt);
+   setTimeout(function(){
+   $('#main_load_div').css('display','none');
+   }, $('#aja_notf_time').val());
+   //THIS IS FOR NOTIFICATION WHEN AJAX LOAD RESPONSE CAME CODE ENDS HERE 
+  }
+  
+   $(document).ready(function()
+    {
+   $('#cls_inf_bt').click(function(){ $('#main_load_div').css('display','none');}); 
+   });
+   
+  </script>
+  <div class="alert_img" id="main_load_div" style="display:none">               
+            <div class=" my_alert my_alert-info my_alert-dismissable" id="dyna_div">
+                <div class="fa" id="load_img_div"><img src="<?= $theme_path; ?>/img/loading.gif" /></div>
+                <i class="fa fa-check" style="display:none" id="tick_img_spn"></i>
+                  <span id="info_txt" class=" ">Success alert preview. This alert is dismissable.</span>
+                  <button id="cls_inf_bt" type="button" class=" my_close" data-dismiss="alert" aria-hidden="true">×</button>
+            </div>                
+        </div>
 
   
 
