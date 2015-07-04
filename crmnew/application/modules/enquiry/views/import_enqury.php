@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <label class="col-md-4"> File</label>
                        <div class="col-md-8">
-                         <input type="file" class="form-control" name="name_uplod">
+                         <input type="file" class="form-control" name="name_uplod" id="name_uplod">
                        </div>
                      </div>
                     <div class="form-group">
@@ -43,4 +43,22 @@
         </div> <!-- /.col -->
 
       </div> <!-- /.row -->
+      <script language="javascript">
+function Checkfiles()
+{
+var fup = document.getElementById('name_uplod');
+var fileName = fup.value;
+var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+if(ext == "csv")
+{
+return true;
+} 
+else
+{
+alert("Upload csv file only");
+fup.focus();
+return false;
+}
+}
+</script>
       
