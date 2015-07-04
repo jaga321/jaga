@@ -107,7 +107,7 @@
                 </thead>
                 
                     <?php 
-                    /*echo "<pre>";
+                   /* echo "<pre>";
                     print_r($customers);
                     exit;*/
                     
@@ -133,7 +133,7 @@
                      <td><?php echo $cus["distic"]; ?></td>
                      <td><?php echo $cus["village"]; ?></td>
                      <td><?php echo $cus["product_type"]; ?></td>
-                     <td><?php echo ($cus['post_dt']==0)?'--':date("d-M-Y",strtotime($cus["post_dt"])); ?></td>
+                     <td><?php echo ($cus["p_date"]==0)?'--':date("d-M-Y",strtotime($cus["p_date"])); ?></td>
                     <!-- <td><?php echo ($cus["source"]); ?></td>-->
                      <td><?php if($cus["approval_status"]==2){echo '<label style="color:red" class="status_approval">Rejected</label>';} 
                         else if($cus["approval_status"]==1){echo '<label class="status_approval" style="color:green">Approved</label>';}
