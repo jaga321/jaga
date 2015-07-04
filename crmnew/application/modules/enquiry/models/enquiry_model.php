@@ -25,7 +25,7 @@ class Enquiry_model extends CI_Model{
 	
   public function get_customer_list()
   {
-		$this->db->select('enquiry.*,enquiry.id as e_id');
+		$this->db->select('enquiry.*,enquiry.id as e_id,enquiry.post_dt as p_date');
 		$this->db->select('user.*,user.id as u_id');
 		$this->db->join('user','user.user_id=enquiry.userid','left');
 		$query = $this->db->get($this->table_name)->result_array();
