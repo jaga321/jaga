@@ -25,9 +25,9 @@ class Enquiry_model extends CI_Model{
 	
   public function get_customer_list()
   {
-		$this->db->select('enquiry.*');
-		$this->db->select('user.*');
-		$this->db->join('user','user.user_id=enquiry.userid');
+		$this->db->select('enquiry.*,enquiry.id as e_id');
+		$this->db->select('user.*,user.id as u_id');
+		$this->db->join('user','user.user_id=enquiry.userid','left');
 		$query = $this->db->get($this->table_name)->result_array();
 		//echo "<pre>"; print_r($query); exit;
 		
@@ -195,14 +195,12 @@ class Enquiry_model extends CI_Model{
 	
 	//import option code add jaga
 	function import_comp($data)
-	
-     {
-		 //print_r("dsfdsf");exit;
-		 foreach($data as $val)
-		  {
+	{
+		foreach($data as $val)
+		{
 			$this->db->insert('enquiry', $val);
-		  }
-     }
+		}
+	}
  //end import
 	
 	

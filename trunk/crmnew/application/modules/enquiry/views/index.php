@@ -69,8 +69,8 @@
             <div>
             
             </div>
-			
-            <div class="portlet-content filter_result">
+			<div class="filter_result">
+            <div class="portlet-content">
             <div class="wid100"> 
             <table 
                 class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
@@ -124,7 +124,7 @@
                          { ?>
                          <td></td>
                      <?php } else { ?>
-                     <td><input type="checkbox" name="allocate"  class="all_cate test_hide" value="<?=$cus['id'];?>"/></td>
+                     <td><input type="checkbox" name="allocate"  class="all_cate test_hide" value="<?=$cus['e_id'];?>"/></td>
                      <?php }  } ?>
                      <td><?php echo "$i";?></td>
                      <td><?php echo $cus["username"]; ?></td>
@@ -157,9 +157,9 @@
                       <td width="">
                       <!--<button id="approval" value="<?=$cus['id'];?>" class="button-green status app_status_<?=$cus['id'];?>">Approve</button>
                       <button class="button-red rejected app_status_<?=$cus['id'];?>" >Reject</button>-->
-                      <a href="<?php echo $this->config->item('base_url')?>enquiry/edit_enquiry/<?=$cus['id'];?>" ><i class="fa fa-edit btn btn-info btn-sm"></i></a>
+                      <a href="<?php echo $this->config->item('base_url')?>enquiry/edit_enquiry/<?=$cus['e_id'];?>" ><i class="fa fa-edit btn btn-info btn-sm"></i></a>
                      </td>
-                    
+                    </tr>
                      
                      <?php 
                $i++;
@@ -168,9 +168,24 @@
               else
               {
                ?>
-               </tr>
                         <tr>
-                         <td colspan="12">No Data Found</td>
+                        <?php
+                     	if($user_det['log_type']!='Agent')
+						{
+							?>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <?php } ?>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
                         </tr>
                        <?php
               }
@@ -188,6 +203,7 @@
               
 
             </div> <!-- /.portlet-content -->
+            </div>
 
           </div> <!-- /.portlet -->
 
@@ -251,10 +267,11 @@ $(".filter_data").on('change',function()
 	      url:BASE_URL+"enquiry/filter_table",
 		  type:'post',
 		  data:{ status:status},
-		  success:function(result){
+		  success:function(result)
+		  {
 			  $('.filter_result').html(result);
 			  // for_response_del('Data Delete Successfully...!'); // resutl notification   
-         }
+          }
    });
    
 
