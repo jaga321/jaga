@@ -1,5 +1,26 @@
 <?php $theme_path = $this->config->item('theme_locations').$this->config->item('active_template'); ?>
-<div class="portlet-content filter_result"> 
+<script src="<?=$theme_path; ?>/js/libs/jquery-1.10.1.min.js"></script>
+  <script src="<?=$theme_path; ?>/js/libs/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="<?=$theme_path; ?>/js/libs/bootstrap.min.js"></script>
+
+
+  
+  <!-- Plugin JS -->
+  <script src="<?=$theme_path; ?>/js/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="<?=$theme_path; ?>/js/plugins/datatables/DT_bootstrap.js"></script>
+  <script src="<?=$theme_path; ?>/js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
+  <script src="<?=$theme_path; ?>/js/plugins/icheck/jquery.icheck.min.js"></script>
+
+  <!-- App JS -->
+  <script src="<?=$theme_path; ?>/js/target-admin.js"></script>
+  
+  <!-- Plugin JS -->
+  <script src="<?=$theme_path; ?>/js/demos/dashboard.js"></script>
+  <script src="<?=$theme_path; ?>/js/demos/calendar.js"></script>
+  <script src="<?=$theme_path; ?>/js/demos/charts/morris/area.js"></script>
+  <script src="<?=$theme_path; ?>/js/demos/charts/morris/donut.js"></script>
+
+<div class="portlet-content"> 
             <table 
                 class="table table-striped table-bordered table-hover table-highlight table-checkable" id="test_export" 
                 data-provide="datatable" 
@@ -87,7 +108,7 @@
                       <a href="<?php echo $this->config->item('base_url')?>enquiry/edit_enquiry/<?=$cus['id'];?>" ><i class="fa fa-edit btn btn-info btn-sm"></i></a>
                      </td>
                     
-                     
+                      </tr>
                      <?php 
                $i++;
                }
@@ -95,9 +116,25 @@
               else
               {
                ?>
-               </tr>
+              
                         <tr>
-                         <td colspan="12">No Data Found</td>
+                        <?php
+                     	if($user_det['log_type']!='Agent')
+						{
+							?>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <?php } ?>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
+                         <td>&nbsp;</td>
                         </tr>
                        <?php
               }
@@ -115,23 +152,5 @@
               
 
             </div>
-  <script src="<?=$theme_path; ?>/js/libs/jquery-1.10.1.min.js"></script>
-  <script src="<?=$theme_path; ?>/js/libs/jquery-ui-1.9.2.custom.min.js"></script>
-  <script src="<?=$theme_path; ?>/js/libs/bootstrap.min.js"></script>
-
-
-  
-  <!-- Plugin JS -->
-  <script src="<?=$theme_path; ?>/js/plugins/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?=$theme_path; ?>/js/plugins/datatables/DT_bootstrap.js"></script>
-  <script src="<?=$theme_path; ?>/js/plugins/tableCheckable/jquery.tableCheckable.js"></script>
-  <script src="<?=$theme_path; ?>/js/plugins/icheck/jquery.icheck.min.js"></script>
-
-  <!-- App JS -->
-  <script src="<?=$theme_path; ?>/js/target-admin.js"></script>
-  
-  <!-- Plugin JS -->
-  <script src="<?=$theme_path; ?>/js/demos/dashboard.js"></script>
-  <script src="<?=$theme_path; ?>/js/demos/calendar.js"></script>
-  <script src="<?=$theme_path; ?>/js/demos/charts/morris/area.js"></script>
-  <script src="<?=$theme_path; ?>/js/demos/charts/morris/donut.js"></script>              
+            
+                

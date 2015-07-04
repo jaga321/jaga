@@ -155,41 +155,44 @@ class Enquiry extends MX_Controller {
  {
   $this->load->model('enquiry/enquiry_model');
   $csv_file = $_FILES['name_uplod']['tmp_name'];
+  //echo $csv_file; exit;
   $csvfile = fopen($csv_file, 'r');
   $theData = fgets($csvfile);
   $i = 0;
   $insert_csv = array();
   while (!feof($csvfile)) 
   {
-   $csv_data[] = fgets($csvfile, 1024);
-   $csv_array = explode(",", $csv_data[$i]);
-   $csv_array = array_filter($csv_array);
+	   $csv_data[] = fgets($csvfile, 1024);
+	   $csv_array = explode(",", $csv_data[$i]);
+	   $csv_array = array_filter($csv_array);
+	   
+	   if(empty($csv_array))
+	   {
+			unset($csv_array);
+	   }
+	   else
+	   {
+			//echo"<pre>"; print_r($csv_array);exit;
+			$insert_csv[$i]['id'] = "";
+			$insert_csv[$i]['userid'] = $csv_array[1];
+			$insert_csv[$i]['name'] = $csv_array[2];
+			$insert_csv[$i]['phone'] = $csv_array[3];
+			$insert_csv[$i]['distic'] = $csv_array[4];
+			$insert_csv[$i]['village'] = $csv_array[5];
+			$insert_csv[$i]['product_type'] = $csv_array[6];
+			$insert_csv[$i]['remarks'] = $csv_array[7];
+			/*$insert_csv[$i]['approval_status'] = $csv_array[8];
+			$insert_csv[$i]['lead_status'] = $csv_array[9];
+			$insert_csv[$i]['agent_id'] = $csv_array[10];
+			$insert_csv[$i]['status'] = $csv_array[11];
+			$insert_csv[$i]['df'] = $csv_array[12];*/
+			//echo"<pre>"; print_r($csv_array);
+			$i = $i + 1;
+	   }
    
-   if(empty($csv_array))
-   {
-    unset($csv_array);
-   }
-   else
-   {
-	   //echo"<pre>"; print_r($csv_array);exit;
-    $insert_csv[$i]['id'] = "";
-    $insert_csv[$i]['userid'] = $csv_array[1];
-    $insert_csv[$i]['name'] = $csv_array[2];
-    $insert_csv[$i]['phone'] = $csv_array[3];
-    $insert_csv[$i]['distic'] = $csv_array[4];
-    $insert_csv[$i]['village'] = $csv_array[5];
-    $insert_csv[$i]['product_type'] = $csv_array[6];
-    $insert_csv[$i]['remarks'] = $csv_array[7];
-   // $insert_csv[$i]['approval_status'] = $csv_array[8];
-//    $insert_csv[$i]['lead_status'] = $csv_array[9];
-//    $insert_csv[$i]['agent_id'] = $csv_array[10];
-//    $insert_csv[$i]['status'] = $csv_array[11];
-//    $insert_csv[$i]['df'] = $csv_array[12];
-	// echo"<pre>"; print_r($csv_array);exit;
-     $i = $i + 1;
-   }
   }
-   
+  //echo"<pre>"; print_r($insert_csv);
+  //exit;
   
   $this->enquiry_model->import_comp($insert_csv);
   fclose($csvfile);
