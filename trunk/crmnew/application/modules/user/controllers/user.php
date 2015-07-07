@@ -56,9 +56,10 @@ class User extends MX_Controller {
 		$data["customers"]=$this->user_model->get_customer_list();
 		if($this->input->post())
 		{
-			//print_r($this->input->post());exit;
+			//echo "<pre>";print_r($this->input->post());exit;
 			$input=$this->input->post();
 			$this->user_model->update_user($id,$input);
+			$this->user_model->update_password($id,$input);
 			redirect($this->config->item('base_url')."user/", "refresh");
 		}
 		
@@ -72,7 +73,6 @@ class User extends MX_Controller {
 		
 		$this->template->set_master_template('../../themes/'.$this->config->item("active_template").'/template.php');
 		$this->load->model('user/user_model');
-		
 		$data["customers1"]=$this->user_model->get_customer_delete($id);
 		$data["customers"]=$this->user_model->get_customer_list();
 		redirect($this->config->item('base_url')."user/", "refresh");

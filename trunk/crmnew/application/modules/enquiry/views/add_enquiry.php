@@ -123,6 +123,7 @@ if(isset($customers) && !empty($customers))
                     </div>
                 </div>
             </div>
+        
             
             <div class="clearfix"></div>
             <div class="form-group">
@@ -134,8 +135,10 @@ if(isset($customers) && !empty($customers))
                 </div>
                 </div>
             </div>
+                </form>
             <?php } else
 			{?>
+             <form class="form-horizontal"   method="post">
             <div class="clearfix"></div>
             <div class="row">
            		<div class="col-md-6">

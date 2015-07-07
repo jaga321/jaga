@@ -42,8 +42,8 @@
                         </td>
                         <td width="20">&nbsp;</td>
                         <td>
-                                        
-                                        <button class="btn btn-info btn-xs" onclick="fnExcelReport()" style="float:right;" 
+                                        <!--onclick="fnExcelReport()"-->
+                                        <button class="btn btn-info btn-xs"  style="float:right;" 
                                            id="export" >Export</button><?php if($user_det['log_type']!='Agent'){ ?>
                                         <select class="filter_data pull-right" style="float:right; margin-right:10px;">
                                             <option value="">Select</option>
@@ -124,7 +124,7 @@
                          { ?>
                          <td></td>
                      <?php } else { ?>
-                     <td><input type="checkbox" name="allocate"  class="all_cate test_hide" value="<?=$cus['e_id'];?>"/></td>
+                     <td><input type="checkbox" id='<?=$i?>' name="allocate"  class="all_cate test_hide" value="<?=$cus['e_id'];?>"/></td>
                      <?php }  } ?>
                      <td><?php echo "$i";?></td>
                      <td><?php echo $cus["username"]; ?></td>
@@ -135,7 +135,7 @@
                      <td><?php echo $cus["product_type"]; ?></td>
                      <td><?php echo ($cus["p_date"]==0)?'--':date("d-M-Y",strtotime($cus["p_date"])); ?></td>
                     <!-- <td><?php echo ($cus["source"]); ?></td>-->
-                     <td><?php if($cus["approval_status"]==2){echo '<label style="color:red" class="status_approval">Rejected</label>';} 
+                     <td><?php if($cus["approval_status"]==2){echo '<label class="status_approval" style="color:red">Rejected</label>';} 
                         else if($cus["approval_status"]==1){echo '<label class="status_approval" style="color:green">Approved</label>';}
                         else{echo '<label class="status_approval" style="color:blue">Pending</label>';} ?>
                      </td>
@@ -156,7 +156,7 @@
                     
                       <td width="">
                       <!--<button id="approval" value="<?=$cus['id'];?>" class="button-green status app_status_<?=$cus['id'];?>">Approve</button>
-                      <button class="button-red rejected app_status_<?=$cus['id'];?>" >Reject</button>-->
+                      <button class="button-red  app_status_<?=$cus['id'];?>" >Reject</button>-->
                       <a href="<?php echo $this->config->item('base_url')?>enquiry/edit_enquiry/<?=$cus['e_id'];?>" ><i class="fa fa-edit btn btn-info btn-sm"></i></a>
                      </td>
                     </tr>
@@ -234,7 +234,7 @@ $(".status").on('click',function()
    
 
 });
-$(".rejected").on('click',function() 
+$(".rej").on('click',function() 
 {
 	
    idno=($(this).attr('class'));
@@ -242,7 +242,7 @@ $(".rejected").on('click',function()
    var id=splitNumber[2];
    //alert(splitNumber); return false;
    $.ajax({
-	      url:BASE_URL+"enquiry/change_reject_status",
+	      url:BASE_URL+"enquiry/change_rej_status",
 		  type:'post',
 		  data:{ id:id},
 		  success:function(result){
@@ -360,11 +360,8 @@ $(function () {
      
       $('.chkSelectAll').on('click',function()
 	  {
-		
         $('.all_cate').attr('checked', $(this).is(':checked'));
-		
       });
-
       $('.all_cate').on('click',function()
 	  {
 		  //alert('test');
@@ -381,6 +378,23 @@ $(function () {
       });
 
     });
+	
+	$('#export').live('click',function(){
+
+                        window.location.href=BASE_URL+'enquiry/export_datas/'+$('.filter_data').val();
+
+	});
+	/*$('.all_cate').live('click',function(){
+		
+		console.log($('.all_cate:checked'));
+		
+			if (event.ctrlKey) {
+			alert("The CTRL key was pressed!");
+			} else {
+				alert("The CTRL key was NOT pressed!");
+			}
+	});*/
+	
 </script>
 
 

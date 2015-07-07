@@ -63,7 +63,7 @@ class Enquiry extends MX_Controller {
 		//redirect($this->config->item('base_url').'enquiry/');
 		
 	}
-	public function change_reject_status()
+	public function change_rej_status()
 	{
 		$this->load->model('enquiry/enquiry_model');
 		$aid=$this->input->post('id');
@@ -161,20 +161,18 @@ class Enquiry extends MX_Controller {
   $theData = fgets($csvfile);
   $i = 0;
   $insert_csv = array();
+  $check='';
   while (!feof($csvfile)) 
   {
 	   $csv_data[] = fgets($csvfile, 1024);
 	   $csv_array = explode(",", $csv_data[$i]);
 	   $csv_array = array_filter($csv_array);
-	   
 	   if(empty($csv_array))
 	   {
 			unset($csv_array);
 	   }
 	   else
 	   {
-			//echo"<pre>"; print_r($csv_array);exit;
-			$insert_csv[$i]['id'] = "";
 			$insert_csv[$i]['userid'] = $csv_array[1];
 			$insert_csv[$i]['name'] = $csv_array[2];
 			$insert_csv[$i]['phone'] = $csv_array[3];
@@ -182,31 +180,141 @@ class Enquiry extends MX_Controller {
 			$insert_csv[$i]['village'] = $csv_array[5];
 			$insert_csv[$i]['product_type'] = $csv_array[6];
 			$insert_csv[$i]['remarks'] = $csv_array[7];
+			
+				if(count($csv_array)!=7)
+					$check=1;
+		
 			/*$insert_csv[$i]['approval_status'] = $csv_array[8];
 			$insert_csv[$i]['lead_status'] = $csv_array[9];
 			$insert_csv[$i]['agent_id'] = $csv_array[10];
 			$insert_csv[$i]['status'] = $csv_array[11];
 			$insert_csv[$i]['df'] = $csv_array[12];*/
-			//echo"<pre>"; print_r($csv_array);
+			//echo"<pre>"; print_r($csv_array[6]);
 			$i = $i + 1;
 	   }
    
   }
-  //echo"<pre>"; print_r($insert_csv);
-  //exit;
-  
-  $this->enquiry_model->import_comp($insert_csv);
-  fclose($csvfile);
-  echo '<script> alert("data imported successfully..");
-                 window.location="enquiry/import_enqury";
-       </script>';
-  //print_r("File data successfully imported to database!!");
-  redirect($this->config->item('base_url')."enquiry/import_enqury", "refresh");
-  //mysql_close($connect); 
- }
- //import function code end jaga
+  if($check==1)
+  {
+	  echo "File Upload Error...Kindly check all the datas are filled....<a href='".$this->config->item('base_url')."enquiry/import_enqury' class='btn btn-primary'>Back to Import Page</a>";
+  }
+  else
+  {
+		  if($csv_array[1] !='')
+		  {
+			   echo '<script> alert("Import error");
+						 window.location="enquiry/import_enqury";
+			   </script>';
+		  
+		  }
+		  else
+		  {
+		   $this->enquiry_model->import_comp($insert_csv);
+		  fclose($csvfile);
+		  echo '<script> alert("Data Imported successfully..");
+						 window.location="enquiry/import_enqury";
+			   </script>';
+			 
+		  }
+		  //print_r("File data successfully imported to database!!");
+		  redirect($this->config->item('base_url')."enquiry/import_enqury", "refresh");
+		  //mysql_close($connect); 
+		 }
+		 //import function code end jaga
+  }
+  public function export_datas($id)
+  {
+	  	$this->load->model('enquiry/enquiry_model');
+		//print_r($id);exit;
+		$data["status_id"]=$id;
+		$data["agents"]=$this->enquiry_model->get_agent_list();
+		$customers=$this->enquiry_model->get_customer_by_app_status($id);
 	
+		
+		$this->load->library('Excel');
+		 
+		// Create new PHPExcel object
+		$objPHPExcel = new PHPExcel();
+  		$user_det = $this->session->userdata('logged_in'); 
+		$objPHPExcel->setActiveSheetIndex(0);
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'S.No');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Enquiry source');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Name');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'Phone Number');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'Village');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'District');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Product Type');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Date');
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Status');
+		if($user_det['log_type']!='Agent'){
+		$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J1', 'Allocated to');
+		} 
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('B')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('C')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('D')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('E')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('F')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('G')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('H')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('I')->setWidth(20);
+		$objPHPExcel->getActiveSheet(0)->getColumnDimension('J')->setWidth(20);
+		
+		$objPHPExcel->getActiveSheet(0)->getStyle('A1:J1')->getFont()->setBold(true);
+        // Set fills
+        $objPHPExcel->getActiveSheet(0)->getStyle('A1:J1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID);
+        $objPHPExcel->getActiveSheet(0)->getStyle('A1:J1')->getFill()->getStartColor()->setARGB('3399ff');
+		if(isset($customers) && !empty($customers))
+		{
+			$i=2;$j=1;
+			foreach($customers as $cus)
+			{
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$i, $j);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$i, $cus["username"]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$i, $cus["name"]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$i, $cus["phone"]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E'.$i, $cus["distic"]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$i, $cus["village"]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$i, $cus["product_type"]);
+				$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H'.$i, ($cus['post_dt']==0)?'--':date("d-M-Y",strtotime($cus["post_dt"])));
+				if($cus["approval_status"]==2)
+				{
+					$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I'.$i, 'Rejected');
+				} 
+                else if($cus["approval_status"]==1)
+				{
+					$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I'.$i, 'Approved');
+				}
+                else
+				{
+					$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I'.$i, 'Pending');
+				}
+				
+				if($user_det['log_type']!='Agent'){
+                   
+                      if(isset($cus["allocate"]) && !empty($cus["allocate"]))
+                        {
+                            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('J'.$i, $cus['allocate'][0]['ag_al_user']);
+                        }
+                        else
+                        {
+                           $objPHPExcel->setActiveSheetIndex(0)->setCellValue('J'.$i, '');
+                        } 
+                  
+                } 
+				$i++;$j++;
+			}
+		}
+		// Rename worksheet (worksheet, not filename)
+		$objPHPExcel->getActiveSheet()->setTitle('Enquiry');
+		
+		
+		header('Content-type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="Enquiry.xlsx"');
 	
+		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		$objWriter->save('php://output');	
+	
+  }
 }
 
 /* End of file welcome.php */
