@@ -265,16 +265,16 @@ if(isset($customers) && !empty($customers))
                   				  <h3 id="myModalLabel">Update Lead</h3>
                    			 </div>
                    		  <div class="modal-body">
-                   			 <form action="<?php echo $this->config->item('base_url'); ?>lead/up_lead"  name="form" method="post">
+                   			 <form action="<?php echo $this->config->item('base_url'); ?>lead/up_lead"  name="form" onsubmit="return(validate());" method="post">
                    			 <div class="row">
                    				 <div class="col-sm-12">
                     <table width="100%">
                     	<tr>
                             <input type="hidden" value="<?=$cus['userid'];?>" name="user_id" class="user_id_<?=$cus['id'];?>" />
                             <input type="hidden" value="<?php echo $cus["lead"][0]['id']; ?>" name="lead_id"  />
-                            <input type="hidden" name="id" value="<?php echo $cus['id'] ?>" />
+                            <input type="hidden" name="id" id="id" class="id" value="<?php echo $cus['id'] ?>" />
                             <td  style="width: 107px;">Days</td>
-                            <td><input type="text" name="days" class="form-control" required="required"  id="employeename" value="<?php echo $cus["lead"][0]['days'] ?>" /></td>
+                            <td><input type="text" name="days" class="form-control day" required="required"  id="day" value="<?php echo $cus["lead"][0]['days'] ?>" /></td>
                    	   </tr>
                        <tr>
                         <td>Status</td>
@@ -389,7 +389,7 @@ if(isset($customers) && !empty($customers))
                          <tr>
                             <td style="width: 107px;">&nbsp;</td>
                             <td>
-                                <input type="submit" class="edit btn btn-success btn-sm"  id="edit" value="Update"> 
+                                <input type="submit" class="up_date btn btn-success btn-sm " onclick="gSubmit();"   id="edit"  value="Update"> 
                                 <button type="reset" class="btn btn-danger btn-sm"  id="no" data-dismiss="modal">Discard</button>
                             </td>
                         </tr>
@@ -434,7 +434,7 @@ if(isset($customers) && !empty($customers))
 		
         // var d_stats=$("input[name=d_stats"+id+"]:checked").val();
         //alert(d_stats); return false;
-        if (days != '' && d_stats != 'undifined') {
+        if (days != '' && days != 0) {
 
             $.ajax({
                 url: BASE_URL + "lead/add_lead",
@@ -467,45 +467,16 @@ if(isset($customers) && !empty($customers))
     });
 
 
-    $(".up_lead").live('click', function() {
-
-        idno = ($(this).attr('class'));
-
-        var splitNumber = idno.split('_');
-        var id = splitNumber[2];
-        var lead_id = $('.lead_id_' + id).val();
-        var days = $('.days_cls' + id).val();
-        var user_id = $('.user_id_' + id).val();
-        var dealer = $('.dealer_' + id).val();
-        var status = $('.status_' + id).val();
-        var d_stats = $('.check_' + id).val();
-        // alert(d_stats); return false;
-        if (days != '') {
-
-            $.ajax({
-                url: BASE_URL + "lead/up_lead",
-                type: 'post',
-                data: {
-                    id: id,
-                    days: days,
-                    d_stats: d_stats,
-                    user_id: user_id,
-                    dealer: dealer,
-                    status: status,
-                    lead_id: lead_id
-                },
-                success: function(result) {
-                    // $('#test').html(result);
-                    window.location.href = BASE_URL + 'lead/';
-                    // for_response_del('Data Delete Successfully...!'); // resutl notification   
-                }
-            });
-        } else {
-            alert('Days should not be empty');
-			
-        }
-
-    });
+    $(".up_date").on('click', function() {
+		
+		 var id=$(this).parent().parent().parent().parent().parent().find('.id').val();
+         var day_add=$(this).parent().parent().parent().parent().parent().find('.day').val();
+			if(day_add ==0)
+				{
+					alert('Day should no be empty');
+					return false;
+				}
+		    });
 
     $(".update").live('click', function() {
         idno = ($(this).attr('class'));
@@ -609,5 +580,7 @@ function fnExcelReport()
     return (sa);
 }
    </script> 
+   
+ 
  
 

@@ -161,7 +161,9 @@
                            }?></td>
                         <td>
                            <a href="<?=$this->config->item('base_url').'user/edit_user/'.$cus['id']?>" title="Edit" class="fa fa-edit btn btn-info btn-sm"></span></a>
-                           <a href="<?=$this->config->item('base_url').'user/delete_user/'.$cus['id']?>" title="Delete" class="fa fa-eraser btn btn-danger btn-sm" ><span class="bin"></span></a>
+                          
+                            <a href="#test1_<?php echo $cus['id']; ?>" data-toggle="modal" name="Delete" 
+                                        	class="fa fa-eraser btn btn-danger btn-sm" ><span class="bin"></span></a>
                         </td>
                         <?php 
                            $i++;
@@ -181,6 +183,58 @@
                   </div>
                   </div>
             <!-- /.portlet -->
+            <?php 
+             if(isset($customers) && !empty($customers))
+                            {
+                                $i=1;
+                                foreach($customers as $cus) 
+                                { 
+                        ?>   
+            
+            <div id="test1_<?php echo $cus['id']; ?>" class="modal modal-styled fade in" tabindex="-1" role="dialog" 
+                    aria-labelledby="myModalLabel" aria-hidden="false" align="center">
+                   		 <div class="modal-dialog">
+                    		<div class="modal-content">
+                  			  <div class="modal-header"><a class="close" data-dismiss="modal">*</a>   
+                  				  <h3 id="myModalLabel">Delete</h3>
+                   			 </div>
+                   		  <div class="modal-body">
+                   			 <form action="<?php echo $this->config->item('base_url'); ?>lead/up_lead"  name="form" onsubmit="return(validate());" method="post">
+                   			 <div class="row">
+                   				 <div class="col-sm-12">
+                    <table width="100%">
+                    	<tr>
+                            
+                            <input type="hidden" name="id" id="id" class="id" value="<?php echo $cus['id'] ?>" />
+                           
+                            <td>Do You Want Delete?<span style="color:#0CF"><?php echo $cus['username'] ?></span></td>
+                   	   </tr>
+                       
+                           
+                        <tr>
+                             <td></td>
+                        </tr>
+                   </table>
+                   
+                    
+                    <table width="100%">
+                    <td>&nbsp;&nbsp;</td>
+                         <tr>
+                            <td style="width: 107px;">&nbsp;</td>
+                            <td>
+                                
+                                 <a href="<?=$this->config->item('base_url').'user/delete_user/'.$cus['id']?>" title="Delete" class="btn btn-warning btn-sm" >Delete</a>
+                                <button type="reset" class="btn btn-danger btn-sm"  id="no" data-dismiss="modal">Discard</button>
+                            </td>
+                        </tr>
+                    </table>
+			</div>
+		</div>    
+	</form>
+	</div>
+	</div>
+	</div>       
+</div><?php }} ?>
          </div>
       </div>
    </div>

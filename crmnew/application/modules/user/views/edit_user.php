@@ -1,7 +1,4 @@
 <?php $theme_path= $this->config->item('theme_locations').$this->config->item('active_template'); ?>
-
-
-
 <div class="content">
     <div class="content-container">
         <div class="content-header">

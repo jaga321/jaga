@@ -25,7 +25,7 @@ class User_model extends CI_Model{
   public function get_customer_list()
   {
 		$this->db->select('*');
-		$this->db->where('status',1);
+		$this->db->where('status',1,'df',0);
 		$query = $this->db->get($this->table_name);
 		if ($query->num_rows() >= 1) 
 		{
@@ -75,14 +75,9 @@ class User_model extends CI_Model{
 	
 	
 	 public function update_user($id,$input)
-  {
-	  //echo "<pre>"; print_r($input);exit;
-	
+    {
 		$this->db->where('id', $id);
-		$password_up=md5($fm_inputs['password_up']);
-		if($password_up='')
-		{
-		if($input['user_type_up']=='Delear')
+				if($input['user_type_up']=='Delear')
 		{
 			$data=array('username'=>$input['name_up'],'user_id'=>$input['user_id_up'],'phone_no'=>$input['p_number_up'],
 			'address'=>$input['address_up'],'log_type'=>$input['user_type_up'],'del_point'=>$input['credit_point_up']);
@@ -90,27 +85,36 @@ class User_model extends CI_Model{
 		else
 		{
 			$data=array('username'=>$input['name_up'],'user_id'=>$input['user_id_up'],'phone_no'=>$input['p_number_up'],
-			'address'=>$input['address_up'],'log_type'=>$input['user_type_up'],'del_point'=>0);
+			'address'=>$input['address_up'],'log_type'=>$input['user_type_up']);
 		}
-		}else
-		{
-			if($input['user_type_up']=='Delear')
-		{
-			$data=array('username'=>$input['name_up'],'user_id'=>$input['user_id_up'],'phone_no'=>$input['p_number_up'],
-			'address'=>$input['address_up'],'log_type'=>$input['user_type_up'],'password'=>$password_up,'del_point'=>$input['credit_point_up']);
-		}
-		else
-		{
-			$data=array('username'=>$input['name_up'],'password'=>$password_up,'user_id'=>$input['user_id_up'],'phone_no'=>$input['p_number_up'],
-			'address'=>$input['address_up'],'log_type'=>$input['user_type_up'],'del_point'=>0);
-		}
-		}
+		
 		if ($this->db->update($this->table_name, $data)) {
-			
 			return true;
 		}
 		return false;
-  }
+  
 	
- 	 
+  }
+  public function update_password($id,$input)
+  {
+	
+	  
+	  if($input['password_up']!='')
+	   {   $this->db->where('id', $id);
+		   $password=md5($input['password_up']);
+		   $data=array('password'=>$password);
+		   $this->db->update($this->table_name, $data);
+     	  
+	   }
+	   else
+	   {
+		  
+	   }
+	   
+		 
+	 
+	  
+  }
+ 
+  
 }

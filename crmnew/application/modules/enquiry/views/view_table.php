@@ -51,15 +51,12 @@
                         <th  data-sortable="true">Allocated to</th>
                         <?php } ?>
                         <th>Action</th>
-                   
                     </tr>
                 </thead>
-                
                     <?php 
                     /*echo "<pre>";
                     print_r($customers);
                     exit;*/
-                    
                     if(isset($customers) && !empty($customers))
                         {
                             $i=1;
@@ -84,7 +81,7 @@
                      <td><?php echo $cus["product_type"]; ?></td>
                      <td><?php echo ($cus['post_dt']==0)?'--':date("d-M-Y",strtotime($cus["post_dt"])); ?></td>
                      <!--<td><?php echo ($cus["source"]); ?></td>-->
-                     <td><?php if($cus["approval_status"]==2){echo '<label style="color:red" class="status_approval">Rejected</label>';} 
+                     <td><?php if($cus["approval_status"]==2){echo '<label class="status_approval" style="color:red">Rejected</label>';} 
                         else if($cus["approval_status"]==1){echo '<label class="status_approval" style="color:green">Approved</label>';}
                         else{echo '<label class="status_approval" style="color:blue">Pending</label>';} ?>
                      </td>
@@ -98,16 +95,13 @@
                         {
                             echo "";
                         } ?>
-                    
                      </td>
                      <?php } ?>
-                    
                       <td width="">
                       <!--<button id="approval" value="<?=$cus['id'];?>" class="button-green status app_status_<?=$cus['id'];?>">Approve</button>
                       <button class="button-red rejected app_status_<?=$cus['id'];?>" >Reject</button>-->
                       <a href="<?php echo $this->config->item('base_url')?>enquiry/edit_enquiry/<?=$cus['id'];?>" ><i class="fa fa-edit btn btn-info btn-sm"></i></a>
                      </td>
-                    
                       </tr>
                      <?php 
                $i++;
@@ -116,7 +110,6 @@
               else
               {
                ?>
-              
                         <tr>
                         <?php
                      	if($user_det['log_type']!='Agent')
@@ -139,18 +132,8 @@
                        <?php
               }
                ?>
-                    
-                   
-                   
             </table>
-            
-            
-            
-                      
-
                <!-- /.table-responsive -->
-              
-
             </div>
             
                 

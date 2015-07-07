@@ -49,10 +49,9 @@ class Enquiry_model extends CI_Model{
 	
 	public function get_agent_customer_list($id)
   	{
-		$this->db->select('enquiry.*');
-		
-		$this->db->select('user.username');
-		$this->db->join('user','user.user_id=enquiry.userid');
+		$this->db->select('enquiry.*,enquiry.id as e_id,enquiry.post_dt as p_date');
+		$this->db->select('user.*,user.id as u_id');
+		$this->db->join('user','user.user_id=enquiry.userid','left');
 		$this->db->where('agent_id',$id);
 		
 		
